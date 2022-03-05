@@ -17,20 +17,23 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: List.generate(items.length, (index) {
-        return Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.only(right: 10),
-          decoration: BoxDecoration(
-            color: currentIndex == index
-                ? CsColors.black
-                : const Color(0xFFF0F0F0),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            items[index].text,
-            style: CsTextStyle.caption.copyWith(
-              color: currentIndex == index ? CsColors.white : Colors.black,
-              fontWeight: CsFontWeight.semiBold,
+        return GestureDetector(
+          onTap: () => onChanged(index),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.only(right: 10),
+            decoration: BoxDecoration(
+              color: currentIndex == index
+                  ? CsColors.black
+                  : const Color(0xFFF0F0F0),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              items[index].text,
+              style: CsTextStyle.caption.copyWith(
+                color: currentIndex == index ? CsColors.white : Colors.black,
+                fontWeight: CsFontWeight.semiBold,
+              ),
             ),
           ),
         );

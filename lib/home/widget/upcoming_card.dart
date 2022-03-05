@@ -1,15 +1,15 @@
 import 'package:cs_ui/cs_ui.dart';
 import 'package:flutter/material.dart';
 
-class HomeCard extends StatelessWidget {
-  const HomeCard({
+class UpcomingCard extends StatelessWidget {
+  const UpcomingCard({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
+      height: 160,
       width: double.infinity,
       padding: const EdgeInsets.only(left: 10, right: 10),
       decoration: BoxDecoration(
@@ -104,39 +104,11 @@ class HomeCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          'DHK 145 - 3',
+                          'VS',
                           style: CsTextStyle.headline3.copyWith(
                             fontWeight: CsFontWeight.bold,
                             fontSize: 22,
                           ),
-                        ),
-                        const SizedBox(height: 3),
-                        Text(
-                          'Over : 16.0',
-                          style: CsTextStyle.headline3.copyWith(
-                            fontWeight: CsFontWeight.regular,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 3),
-                        Row(
-                          children: [
-                            Container(
-                              height: 4.5,
-                              width: 4.5,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFD40026),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Text(
-                              ' Live',
-                              style: CsTextStyle.headline3.copyWith(
-                                fontWeight: CsFontWeight.regular,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
@@ -165,15 +137,6 @@ class HomeCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 5),
-                Text(
-                  'needs 58 Runs in 24 balls',
-                  style: CsTextStyle.headline3.copyWith(
-                    fontWeight: CsFontWeight.medium,
-                    fontSize: 12,
-                    color: CsColors.primary,
-                  ),
-                ),
               ],
             ),
           ),
@@ -189,24 +152,20 @@ class HomeCard extends StatelessWidget {
               color: Color(0xFFF3F4F5),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'CRR 8.56',
+                  'Start After',
                   style: CsTextStyle.caption.copyWith(
                     fontWeight: CsFontWeight.medium,
                   ),
                 ),
+                SizedBox(width: context.minBlockVertical),
                 Text(
-                  'Target 203',
+                  '03:04:12',
                   style: CsTextStyle.caption.copyWith(
                     fontWeight: CsFontWeight.medium,
-                  ),
-                ),
-                Text(
-                  'RR 10.6',
-                  style: CsTextStyle.caption.copyWith(
-                    fontWeight: CsFontWeight.medium,
+                    color: const Color(0xFFD40026),
                   ),
                 ),
               ],

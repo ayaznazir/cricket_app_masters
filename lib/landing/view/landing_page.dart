@@ -32,7 +32,7 @@ class _LandingPageState extends State<LandingPage>
 
     _timer = Timer(
       const Duration(milliseconds: 3000),
-      () => context.go(RoutePages.home),
+      () => context.go(RoutePages.main),
     );
   }
 

@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:cricket/home/home.dart';
 import 'package:cricket/landing/landing.dart';
+import 'package:cricket/main/main.dart';
 import 'package:cs_ui/cs_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RoutePages {
   static const String landing = '/';
-  static const String home = '/home';
+  static const String main = '/main';
   static const String slider = '/slider';
 }
 
@@ -20,9 +20,9 @@ class AppRouter {
         return platformPageRoute<dynamic>(
           builder: (_) => const LandingPage(),
         );
-      case RoutePages.home:
+      case RoutePages.main:
         return platformPageRoute<dynamic>(
-          builder: (_) => const HomePage(),
+          builder: (_) => const MainPage(),
         );
       default:
         return platformPageRoute<dynamic>(

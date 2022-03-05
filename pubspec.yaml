@@ -37,9 +37,9 @@ dependencies:
   cs_ui:
     path: packages/cs_ui
   shared_preferences: ^2.0.13
-  salomon_bottom_bar: ^3.2.0
   flutter_svg: ^0.23.0+1
   hooks_riverpod: ^1.0.3
+  page_transition: ^2.0.5
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,13 @@
 import 'package:cs_ui/cs_ui.dart';
 import 'package:flutter/material.dart';
 
-class HomeCard extends StatelessWidget {
-  const HomeCard({
+class ScoreCard extends StatelessWidget {
+  const ScoreCard({
     Key? key,
+    required this.cardTitle,
   }) : super(key: key);
+
+  final String cardTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class HomeCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'T20I',
+                    cardTitle,
                     style: CsTextStyle.caption.copyWith(
                       fontWeight: CsFontWeight.medium,
                     ),

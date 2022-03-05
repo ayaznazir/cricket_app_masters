@@ -1,31 +1,20 @@
 import 'package:cricket/home/home.dart';
-import 'package:cricket/live/view/live_page.dart';
-import 'package:cricket/more/more.dart';
-import 'package:cricket/ranking/ranking.dart';
-import 'package:cricket/score/score.dart';
 import 'package:flutter/material.dart';
 
 class HomeController extends ChangeNotifier {
-  HomeController() {
-    _pages = [
-      const HomeBodyPage(),
-      const ScorePage(),
-      const LivePage(),
-      const RankingPage(),
-      const MorePage(),
-    ];
-  }
+  int _currentTap = 0;
+  final List<Widget> _homeTabs = [
+    const FinishedTab(),
+    const LiveTab(),
+    const UpcomingTab(),
+  ];
 
-  int _currentIndex = 0;
-  List<Widget> _pages = [];
+  int get currentTap => _currentTap;
 
-  List<Widget> get pages => _pages;
+  List<Widget> get homeTabs => _homeTabs;
 
-  int get currentIndex => _currentIndex;
-
-  void onIndexChanged(int value) {
-    _currentIndex = value;
-    print(_currentIndex);
+  set currentTap(int index) {
+    _currentTap = index;
     notifyListeners();
   }
 }
