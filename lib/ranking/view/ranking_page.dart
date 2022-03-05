@@ -41,16 +41,14 @@ class RankingPage extends StatelessWidget {
               physics: const ClampingScrollPhysics(),
               padding: const EdgeInsets.all(30.0),
               itemBuilder: (context, index) {
-                return Container(
-                  child: Row(
-                    children: [
-                      Text('${index + 1}'),
-                      const SizedBox(width: 10),
-                      Image.asset('assets/png/flag.png'),
-                      const SizedBox(width: 10),
-                      const Text('Australia'),
-                    ],
-                  ),
+                return Row(
+                  children: [
+                    Text('${index + 1}'),
+                    const SizedBox(width: 10),
+                    Image.asset('assets/png/flag.png'),
+                    const SizedBox(width: 10),
+                    const Text('Australia'),
+                  ],
                 );
               },
               separatorBuilder: (context, index) {
