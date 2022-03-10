@@ -35,16 +35,17 @@ class LiveCard extends StatelessWidget {
       width: double.infinity,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 10,
-              spreadRadius: 0,
-              offset: Offset(4, 5),
-              color: Color.fromRGBO(0, 0, 0, 0.17),
-            ),
-          ]),
+        borderRadius: BorderRadius.circular(6),
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 10,
+            spreadRadius: 0,
+            offset: Offset(4, 5),
+            color: Color.fromRGBO(0, 0, 0, 0.17),
+          ),
+        ],
+      ),
       child: Column(
         children: [
           Container(

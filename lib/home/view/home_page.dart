@@ -1,10 +1,16 @@
+import 'package:cricket/core/core.dart';
+import 'package:cricket/global_provider.dart';
 import 'package:cricket/home/home.dart';
 import 'package:cs_ui/cs_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homeProvider = ChangeNotifierProvider<HomeController>((ref) {
-  return HomeController();
+  return HomeController(matchRepository: ref.watch(matchRepository));
+});
+
+final matchesList = FutureProvider<List<Match>>((ref) async {
+  return ref.read(homeProvider).getLiveMatches();
 });
 
 class HomePage extends HookConsumerWidget {
@@ -14,7 +20,6 @@ class HomePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final homeController = ref.watch(homeProvider);
     return SafeArea(
-        child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -110,7 +115,11 @@ class HomePage extends HookConsumerWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(
+              left: 20.0,
+              right: 20,
+              top: 20,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -131,24 +140,25 @@ class HomePage extends HookConsumerWidget {
                   currentIndex: homeController.currentTap,
                   onChanged: (value) => homeController.currentTap = value,
                 ),
-                SizedBox(height: context.minBlockVertical * 2.0),
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 800),
-                  switchInCurve: Curves.easeIn,
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  },
-                  child: homeController.homeTabs[homeController.currentTap],
-                ),
               ],
+            ),
+          ),
+          SizedBox(height: context.minBlockVertical * 2.0),
+          Expanded(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 800),
+              switchInCurve: Curves.easeIn,
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+              child: homeController.homeTabs[homeController.currentTap],
             ),
           ),
         ],
       ),
-    ));
+    );
   }
 }

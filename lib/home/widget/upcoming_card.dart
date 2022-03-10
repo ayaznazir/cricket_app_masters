@@ -1,10 +1,22 @@
+import 'package:cricket/core/core.dart';
 import 'package:cs_ui/cs_ui.dart';
 import 'package:flutter/material.dart';
 
 class UpcomingCard extends StatelessWidget {
   const UpcomingCard({
     Key? key,
+    this.title,
+    this.subTitle,
+    this.teama,
+    this.teamb,
+    this.format,
   }) : super(key: key);
+
+  final String? title;
+  final String? subTitle;
+  final Team? teama;
+  final Team? teamb;
+  final String? format;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +46,7 @@ class UpcomingCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    'Bangladesh Premier League',
+                    title ?? '',
                     style: CsTextStyle.caption.copyWith(
                       fontSize: 12,
                       fontWeight: CsFontWeight.regular,
@@ -55,7 +67,7 @@ class UpcomingCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'T20I',
+                    format ?? '',
                     style: CsTextStyle.caption.copyWith(
                       fontWeight: CsFontWeight.medium,
                     ),
@@ -78,14 +90,14 @@ class UpcomingCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: const Color(0xFFA6A9B8)),
-                            image: const DecorationImage(
-                              image: AssetImage('assets/png/home_img1.png'),
+                            image: DecorationImage(
+                              image: NetworkImage(teama?.logoUrl ?? ''),
                             ),
                           ),
                         ),
                         SizedBox(height: context.minBlockVertical),
                         Text(
-                          'Mi Dhaka',
+                          teama?.name ?? '',
                           style: CsTextStyle.caption.copyWith(
                             fontWeight: CsFontWeight.medium,
                           ),
@@ -96,7 +108,7 @@ class UpcomingCard extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '12th match',
+                          subTitle ?? '',
                           style: CsTextStyle.headline3.copyWith(
                             fontWeight: CsFontWeight.regular,
                             fontSize: 12,
@@ -121,14 +133,14 @@ class UpcomingCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: const Color(0xFFA6A9B8)),
-                            image: const DecorationImage(
-                              image: AssetImage('assets/png/home_img1.png'),
+                            image: DecorationImage(
+                              image: NetworkImage(teamb?.logoUrl ?? ''),
                             ),
                           ),
                         ),
                         SizedBox(height: context.minBlockVertical),
                         Text(
-                          'Khulna Ti',
+                          teamb?.name ?? '',
                           style: CsTextStyle.caption.copyWith(
                             fontWeight: CsFontWeight.medium,
                           ),

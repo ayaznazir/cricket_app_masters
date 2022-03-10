@@ -1,10 +1,34 @@
+import 'package:cricket/core/core.dart';
 import 'package:cs_ui/cs_ui.dart';
 import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
     Key? key,
+    this.id,
+    this.title,
+    this.format,
+    this.teama,
+    this.teamb,
+    this.subTitle,
+    this.abbr,
+    this.isLive = false,
+    this.statusNote,
+    this.target,
+    this.over,
   }) : super(key: key);
+
+  final String? id;
+  final String? title;
+  final String? format;
+  final Team? teama;
+  final Team? teamb;
+  final String? statusNote;
+  final String? subTitle;
+  final String? abbr;
+  final bool isLive;
+  final String? target;
+  final String? over;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +58,7 @@ class HomeCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    'Bangladesh Premier League',
+                    title ?? '',
                     style: CsTextStyle.caption.copyWith(
                       fontSize: 12,
                       fontWeight: CsFontWeight.regular,
@@ -55,7 +79,7 @@ class HomeCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'T20I',
+                    format ?? '',
                     style: CsTextStyle.caption.copyWith(
                       fontWeight: CsFontWeight.medium,
                     ),
@@ -78,14 +102,15 @@ class HomeCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: const Color(0xFFA6A9B8)),
-                            image: const DecorationImage(
-                              image: AssetImage('assets/png/home_img1.png'),
+                            image: DecorationImage(
+                              image: NetworkImage(teama!.logoUrl!),
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         SizedBox(height: context.minBlockVertical),
                         Text(
-                          'Mi Dhaka',
+                          teama?.name ?? '',
                           style: CsTextStyle.caption.copyWith(
                             fontWeight: CsFontWeight.medium,
                           ),
@@ -96,7 +121,7 @@ class HomeCard extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '12th match',
+                          subTitle ?? '',
                           style: CsTextStyle.headline3.copyWith(
                             fontWeight: CsFontWeight.regular,
                             fontSize: 12,
@@ -104,7 +129,7 @@ class HomeCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          'DHK 145 - 3',
+                          abbr ?? '',
                           style: CsTextStyle.headline3.copyWith(
                             fontWeight: CsFontWeight.bold,
                             fontSize: 22,
@@ -112,32 +137,33 @@ class HomeCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          'Over : 16.0',
+                          'Over : $over',
                           style: CsTextStyle.headline3.copyWith(
                             fontWeight: CsFontWeight.regular,
                             fontSize: 12,
                           ),
                         ),
                         const SizedBox(height: 3),
-                        Row(
-                          children: [
-                            Container(
-                              height: 4.5,
-                              width: 4.5,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFD40026),
-                                shape: BoxShape.circle,
+                        if (isLive)
+                          Row(
+                            children: [
+                              Container(
+                                height: 4.5,
+                                width: 4.5,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFFD40026),
+                                  shape: BoxShape.circle,
+                                ),
                               ),
-                            ),
-                            Text(
-                              ' Live',
-                              style: CsTextStyle.headline3.copyWith(
-                                fontWeight: CsFontWeight.regular,
-                                fontSize: 12,
+                              Text(
+                                ' Live',
+                                style: CsTextStyle.headline3.copyWith(
+                                  fontWeight: CsFontWeight.regular,
+                                  fontSize: 12,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
                       ],
                     ),
                     const Spacer(),
@@ -149,14 +175,15 @@ class HomeCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: const Color(0xFFA6A9B8)),
-                            image: const DecorationImage(
-                              image: AssetImage('assets/png/home_img1.png'),
+                            image: DecorationImage(
+                              image: NetworkImage(teamb!.logoUrl!),
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         SizedBox(height: context.minBlockVertical),
                         Text(
-                          'Khulna Ti',
+                          teamb?.name ?? '',
                           style: CsTextStyle.caption.copyWith(
                             fontWeight: CsFontWeight.medium,
                           ),
@@ -167,7 +194,7 @@ class HomeCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'needs 58 Runs in 24 balls',
+                  statusNote ?? '',
                   style: CsTextStyle.headline3.copyWith(
                     fontWeight: CsFontWeight.medium,
                     fontSize: 12,
@@ -198,7 +225,7 @@ class HomeCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Target 203',
+                  'Target $target',
                   style: CsTextStyle.caption.copyWith(
                     fontWeight: CsFontWeight.medium,
                   ),
